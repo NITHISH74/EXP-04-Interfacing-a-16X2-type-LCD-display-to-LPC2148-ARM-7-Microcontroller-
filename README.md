@@ -1,13 +1,10 @@
 # EXP-04-Interfacing a 16X2 type LCD display to LPC2148 ARM 7Microcontroller
 
-Name :
+Name : NITHISHWAR S
 
-Roll no :
+Roll no : 212221230071
 
-Date of experiment :
-
- 
-
+Date of experiment :06/10/2022
 
 ## Interfacing a 16X2 type LCD display to LPC2148 ARM 7 Microcontroller 
 
@@ -122,27 +119,84 @@ Step 9: Select the hex file from the Kiel program folder and import the program 
 
 
 ## Kiel - Program  
+```
+#include<lpc214x.h>
+#include<stdint.h>
+#include<stdlib.h>
+#include<stdio.h>
+void delay_ms(uint16_t j)    /* Function delay in milliseconds*/
+{
+	uint16_t x,i;
+	for(i=0;i<j;i++)
+	{
+		for(x=0;x<6000;x++);     /*loop to generate 1 ms delay with Cclk = 600Mhz*/
+	}
+}
+void LCD_CMD(char command)
+{
+	IO0PIN = ((IO0PIN & 0xFFFF00FF) |(command<<8));
+	IO0SET = 0x00000040;    /*EN=1*/
+	IO0CLR = 0x00000030;    /*RS=0,RW=0*/
+	delay_ms(2);
+	IO0CLR = 0x00000040;      /*EN=0,RS AND RW UNCHANGED(RS=RW=0)*/
+	delay_ms(5);
+}
+void LCD_INIT(void)
+{
+	IO0DIR = 0x0000FFF0;     /*P0.8 TO P0.15 LCD DATA*/
+	delay_ms(20);
+	LCD_CMD(0x38);     /*INITIALIZE LCD*/
+	LCD_CMD(0x0c);     /*DISPLAY ON CURSOR OFF*/  
+	LCD_CMD(0x06);      /*AUTO INCREMENT CURSOR*/
+	LCD_CMD(0x01);        /*DISPLAY CLEAR*/
+	LCD_CMD(0x80);       /*FIRST LINE FIRST POSITION*/
+}
+void LCD_STRING(char*msg)
+{
+	uint8_t i=0;
+	while(msg[i]!=0)
+	{
+		IO0PIN = ((IO0PIN & 0xFFFF00FF) | (msg[i]<<8));
+		IO0SET = 0x00000050;   /*RS =1 , EN = 1*/
+		IO0CLR = 0x00000020;     /* RW=0*/
+		delay_ms(2);
+		IO0CLR = 0x00000040;     /* EN=0,RS & RW UNCHANGED (RS=1,RW=0)*/
+		delay_ms(5);
+		i++;
+	}
+}
+void LCD_CHAR(char msg)
+{
+	IO0PIN = ((IO0PIN & 0xFFFF00FF) | (msg<<8));
+	IO0SET = 0x00000050;     /*RS =1 , EN = 1*/
+	IO0CLR = 0x00000020;    /* RW=0*/
+	delay_ms(2);
+	IO0CLR = 0x00000040;       /* EN=0,RS & RW UNCHANGED (RS=1,RW=0)*/
+	delay_ms(5);
+}
+int main(void)
+{
+	/*uint8_t j;
+  j=0;
+	char val_j[3];*/
+	LCD_INIT();
+	LCD_STRING("WELCOME TO AI&DS");
+	LCD_CMD(0xC0);
+		LCD_STRING("NITHISHWAR S");
 
-
-
-
-
-## Proteus simulation 
-
-
-
+	return 0;
+}
+```
+## Proteus simulation:
+## Before run the simulation:
+![00](https://user-images.githubusercontent.com/94164665/195933511-ffd5b0d1-5f55-4052-87b4-d417f690ca0a.jpg)
+## After run the simulation:
+![11](https://user-images.githubusercontent.com/94164665/195933605-ddcb0bdb-8afd-44b0-a54a-4d07f6089ba6.jpg)
 
 ##  layout Diagram 
-
+![image](https://user-images.githubusercontent.com/94164665/195933704-6f08b38c-1b27-4d13-ad1d-f2274947f4ab.png)
 
 
 ## Result :
 
-Interfaced an LCD with ARM microcontroller is executed and displayed the strings  
-
- 
-
-
-
-
-
+Interfaced an LCD with ARM microcontroller is executed and displayed the strings.
