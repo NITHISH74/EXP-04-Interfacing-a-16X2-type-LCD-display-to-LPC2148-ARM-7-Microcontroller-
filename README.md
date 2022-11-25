@@ -1,11 +1,5 @@
 # EXP-04-Interfacing a 16X2 type LCD display to LPC2148 ARM 7Microcontroller
 
-Name : NITHISHWAR S
-
-Roll no : 212221230071
-
-Date of experiment :06/10/2022
-
 ## Interfacing a 16X2 type LCD display to LPC2148 ARM 7 Microcontroller 
 
 ## Aim: 
@@ -16,16 +10,10 @@ Proteus ISIS professional suite, Kiel μ vision 5 Development environment
  
 ## LCD16X2 
  
- ![image](https://user-images.githubusercontent.com/36288975/195774401-e3bffb44-0d3d-4b7e-b374-7a7a7ef60d48.png)
-
-
- 
+ ![image](https://user-images.githubusercontent.com/36288975/195774401-e3bffb44-0d3d-4b7e-b374-7a7a7ef60d48.png
  
  ![image](https://user-images.githubusercontent.com/36288975/195773232-ab5dd9b0-99b7-4663-9bdf-6665fa93a052.png)
 Fig.01 16X2 LCD DISPLAY 
-
-
-
 
 Apart from the voltage supply connections the important pins from the programming perspective are the data lines(8-bit Data bus), Register select, Read/Write and Enable pin.
 
@@ -33,10 +21,7 @@ Data Bus: As shown in the above figure and table, an alpha numeric lcd has a 8-b
 
 Register Select(RS): The LCD has two register namely a Data register and Command register. Any data that needs to be displayed on the LCD has to be written to the data register of LCD. Command can be issued to LCD by writing it to Command register of LCD. This signal is used to differentiate the data/cmd received by the LCD.
 If the RS signal is LOW then the LCD interprets the 8-bit info as Command and writes it Command register and performs the action as per the command.
-If the RS signal is HIGH then the LCD interprets the 8-bit info as data and copies it to data register. After that the LCD decodes the data for generating the 5x7 pattern and finally displays on the LCD.
-
-Read/Write(RW): This signal is used to write the data/cmd to LCD and reads the busy flag of LCD. For write operation the RW should be LOW and for read operation the R/W should be HIGH.
-
+This signal is used to write the data/cmd to LCD and reads the busy flag of LCD. For write operation the RW should be LOW and for read operation the R/W should be HIGH.
 Enable(EN): This pin is used to send the enable trigger to LCD. After sending the data/cmd, Selecting the data/cmd register, Selecting the Write operation. A HIGH-to-LOW pulse has to be send on this enable pin which will latch the info into the LCD register and triggers the LCD to act accordingly.
 
 Procedure:
@@ -70,9 +55,7 @@ Figure -03 Proteus File Menu
  ![image](https://user-images.githubusercontent.com/36288975/195773617-7731fb71-82dc-40bb-ba6d-69ed59894244.png)
 
   Figure -03 Proteus Default Template Select
-  
-    
- 
+
 Step 3:An untitled design sheet will be opened, save it according to your wish,it is better to create a new folder for every layout as it generates other files supporting your design. However,it is not mandatory.
   Figure -05 Proteus Design Sheet
  
@@ -198,5 +181,4 @@ int main(void)
 
 
 ## Result :
-
 Interfaced an LCD with ARM microcontroller is executed and displayed the strings.
