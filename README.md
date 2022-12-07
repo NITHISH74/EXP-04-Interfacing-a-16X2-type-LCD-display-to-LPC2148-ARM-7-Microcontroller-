@@ -52,6 +52,8 @@ Figure -03 Proteus File Menu
  Step 2: A dialogue box appears to save the current design. However, we are creating a new design file so you can click Yes or No depending on the content of the present file. Then a Pop-Up appears asking to select the template. It is similar to selecting the paper size while printing. For now select default or according to the layout size of the circuit.
  
  
+ 
+ 
  ![image](https://user-images.githubusercontent.com/36288975/195773617-7731fb71-82dc-40bb-ba6d-69ed59894244.png)
 
   Figure -03 Proteus Default Template Select
